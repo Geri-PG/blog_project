@@ -1,11 +1,16 @@
 <?php
 
+use App\Http\Controllers\PostsController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::view('/blog', 'blog');
+
+Route::post('/blog-create', [PostsController::class, 'create'])->name('blog.create');
 
 
 
