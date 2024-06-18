@@ -12,6 +12,8 @@ Route::view('/blog', 'blog');
 
 Route::post('/blog-create', [PostsController::class, 'create'])->name('blog.create');
 
+Route::get('/blog-all', [PostsController::class, 'allBlogs'])->name('blog.all');
+
 
 
 

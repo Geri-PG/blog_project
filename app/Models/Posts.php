@@ -17,4 +17,10 @@ class Posts extends Model
         'user_id',
         'published_at',
     ];
+
+    
+    public function user()
+    {
+        return $this->hasOne(User::class);
+    }
 }

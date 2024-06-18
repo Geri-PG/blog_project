@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Posts;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PostsController extends Controller
 {
@@ -16,6 +17,7 @@ class PostsController extends Controller
         ]);
 
         Posts::create([
+            'user_id' => Auth::user()->id,
             'title' => $request->get('title'),
             'short_description' => $request->get('short_description'),
             'content' => $request->get('content'),
@@ -24,5 +26,12 @@ class PostsController extends Controller
         ]);
 
         return redirect()->back();
+    }
+
+    public function allBlogs() 
+    {
+       $blogs = Posts::all();
+       
+       return view('allBlogs', compact('blogs'));
     }
 }

@@ -11,7 +11,7 @@
                     <a class="nav-link active" aria-current="page" href="/blog">Blog</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="">Contact</a>
+                    <a class="nav-link" href="/blog-all">Our Blogs</a>
                 </li>
 
 
