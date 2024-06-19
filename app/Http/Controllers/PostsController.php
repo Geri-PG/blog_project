@@ -28,10 +28,11 @@ class PostsController extends Controller
         return redirect()->back();
     }
 
-    public function allBlogs() 
+    public function allBlogs()
     {
-       $blogs = Posts::all();
-       
-       return view('allBlogs', compact('blogs'));
+        $blogs = Posts::paginate(4);
+
+
+        return view('allBlogs', compact('blogs'));
     }
 }
