@@ -16,9 +16,10 @@ class Posts extends Model
         'picture',
         'user_id',
         'published_at',
+        'slug',
     ];
 
-    
+
     public function user()
     {
         return $this->hasOne(User::class);

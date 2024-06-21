@@ -23,6 +23,7 @@ class PostsController extends Controller
             'content' => $request->get('content'),
             'picture' => $request->get('picture'),
             'published_at' => $request->get('published_at'),
+            'slug' => Auth::user()->name,
         ]);
 
         return redirect()->back();
