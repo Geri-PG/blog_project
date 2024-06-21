@@ -14,6 +14,16 @@ Route::post('/blog-create', [PostsController::class, 'create'])->name('blog.crea
 
 Route::get('/blog-all', [PostsController::class, 'allBlogs'])->name('blog.all');
 
+Route::get('/blog-user/{slug}', [PostsController::class, 'userBlog'])->name('blog.user');
+
+Route::get('/blog-delete/{blog}', [PostsController::class, 'deleteBlog'])->name('blog.delete');
+
+Route::get('/blog-edit/{blog}', [PostsController::class, 'editBlog'])->name('blog.edit');
+
+Route::post('/blog-save/{blog}', [PostsController::class, 'saveBlog'])->name('blog.save');
+
+
+
 
 
 

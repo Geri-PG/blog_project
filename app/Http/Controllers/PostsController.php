@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Posts;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -22,7 +23,7 @@ class PostsController extends Controller
             'short_description' => $request->get('short_description'),
             'content' => $request->get('content'),
             'picture' => $request->get('picture'),
-            'published_at' => $request->get('published_at'),
+            'published_at' => Carbon::now(),
             'slug' => Auth::user()->name,
         ]);
 
@@ -35,5 +36,35 @@ class PostsController extends Controller
 
 
         return view('allBlogs', compact('blogs'));
+    }
+
+    public function userBlog($slug)
+    {
+        $blog = Posts::where('slug', $slug)->first();
+        dd($blog);
+        return view('userBlog', compact('blog'));
+    }
+
+    public function deleteBlog(Posts $blog)
+    {
+        $blog->delete();
+
+        return redirect()->back();
+    }
+
+    public function editBlog(Posts $blog)
+    {
+        return view('edit', compact('blog'));
+    }
+
+    public function saveBlog (Request $request, Posts $blog)
+    {
+        $blog->title = $request->get('title');
+        $blog->short_description = $request->get('short_description');
+
+
+        $blog->save();
+
+        return redirect()->back();
     }
 }

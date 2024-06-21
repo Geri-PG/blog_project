@@ -34,11 +34,6 @@
                             <input type="file" id="picture" name="picture" class="form-control">
                         </div>
 
-                        <div class="form-group mb-3">
-                            <label for="published_at">Published At</label>
-                            <input type="date" id="published_at" name="published_at" class="form-control">
-                        </div>
-
                         <button type="submit" class="btn btn-primary btn-block mb-3">Create Blog</button>
                     </form>
                 </div>

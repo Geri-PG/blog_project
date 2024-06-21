@@ -12,7 +12,6 @@
                 <th scope="col">Picture</th>
                 <th scope="col">Username</th>
                 <th scope="col">Link</th>
-                {{-- <th scope="col">Content</th> --}}
             </tr>
         </thead>
         <tbody>
@@ -23,7 +22,13 @@
                     <td>{{ $blog->short_description }}</td>
                     <td><img src="{{ $blog->picture }}" alt="Picture" style="width:100px;height:auto;"></td>
                     <td>{{ $blog->slug }}</td>
-                    {{-- <td>{{ $blog->content }}</td> --}}
+                    <td></td>
+                    <td>
+                        <a href="{{ route('blog.delete', ['blog' => $blog->id]) }}"
+                           class="btn btn-danger">Delete</a>
+                        <a href="{{ route('blog.edit', ['blog' => $blog->id]) }}"
+                           class="btn btn-primary">Edit</a>
+                    </td>
                 </tr>
             @endforeach
         </tbody>
