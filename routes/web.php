@@ -22,6 +22,9 @@ Route::get('/blog-edit/{blog}', [PostsController::class, 'editBlog'])->name('blo
 
 Route::post('/blog-save/{blog}', [PostsController::class, 'saveBlog'])->name('blog.save');
 
+Route::get('/blogs/{blog}', [PostsController::class, 'show'])->name('blogs.show');
+
+
 
 
 

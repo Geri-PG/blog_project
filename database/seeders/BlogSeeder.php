@@ -22,7 +22,9 @@ class BlogSeeder extends Seeder
                 'title' => $faker->sentence,
                 'short_description' => $faker->paragraph,
                 'user_id' => 1,
-                'content' => $faker->paragraphs(3, true),
+                'content' => $faker->paragraphs(6, true),
+                'published_at' => $faker->dateTimeBetween('-1 years', 'now'),
+                'slug' => 'Neki link',
             ]);
         }
     }

@@ -67,4 +67,11 @@ class PostsController extends Controller
 
         return redirect()->back();
     }
+
+    // app/Http/Controllers/BlogController.php
+public function show(Posts $blog)
+{
+    return view('show', compact('blog'));
+}
+
 }
