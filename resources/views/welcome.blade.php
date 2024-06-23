@@ -32,8 +32,13 @@
             </div>
         </div>
     </div>
+        <p class="row justify-content-center mt-2 mb-2 text-danger">Admin</p>
         <p class="row justify-content-center mt-2 mb-2 text-danger">Email: edin.mujadzevic1@gmail.com</p>
         <p class="row justify-content-center mt-2 mb-2 text-danger">Password: geri2601</p>
+        <hr>
+        <p class="row justify-content-center mt-2 mb-2 text-danger">User</p>
+        <p class="row justify-content-center mt-2 mb-2 text-danger">Email: anika@gmail.com</p>
+        <p class="row justify-content-center mt-2 mb-2 text-danger">Password: anika1203</p>
 
 
 @endsection

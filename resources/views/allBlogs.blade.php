@@ -12,6 +12,7 @@
                 <th scope="col">Picture</th>
                 <th scope="col">Username</th>
                 <th scope="col">Link</th>
+                <th scope="col">Actions</th>
             </tr>
         </thead>
         <tbody>
