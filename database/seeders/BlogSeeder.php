@@ -24,7 +24,7 @@ class BlogSeeder extends Seeder
                 'user_id' => 1,
                 'content' => $faker->paragraphs(6, true),
                 'published_at' => $faker->dateTimeBetween('-1 years', 'now'),
-                'slug' => 'Read More',
+                'slug' => 'name',
             ]);
         }
     }

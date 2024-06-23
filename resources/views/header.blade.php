@@ -1,3 +1,8 @@
+<?php
+session_start();
+$loggedIn = isset($_SESSION['user']);
+?>
+
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
         <a class="navbar-brand" href="/">Awesome Blog</a>
@@ -14,10 +19,12 @@
                     <a class="nav-link" href="/blog-all">Blogs</a>
                 </li>
             </ul>
+            <?php if (!$loggedIn): ?>
             <div class="d-inline-block">
                 <a class="btn btn-outline-light me-3" href="/login">Login</a>
                 <a class="btn btn-light" href="/register">Register</a>
             </div>
+            <?php endif; ?>
         </div>
     </div>
 </nav>
