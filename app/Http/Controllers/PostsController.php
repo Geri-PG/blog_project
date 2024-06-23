@@ -43,12 +43,12 @@ class PostsController extends Controller
         return view('allBlogs', compact('blogs'));
     }
 
-    public function userBlog($slug)
-    {
-        $blog = Posts::where('slug', $slug)->first();
-        dd($blog);
-        return view('userBlog', compact('blog'));
-    }
+    // public function userBlog($slug)
+    // {
+    //     $slug = Posts::where('slug', $slug)->first();
+    //    // dd($blog);
+    //     return view('userBlog', compact('slug'));
+    // }
 
     public function deleteBlog(Posts $blog)
     {

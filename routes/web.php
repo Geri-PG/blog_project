@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\PostsController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Middleware\AdminMiddleware;
+use App\Http\Middleware\UserMiddleware;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -14,13 +16,24 @@ Route::post('/blog-create', [PostsController::class, 'create'])->name('blog.crea
 
 Route::get('/blog-all', [PostsController::class, 'allBlogs'])->name('blog.all');
 
-Route::get('/blog-user/{slug}', [PostsController::class, 'userBlog'])->name('blog.user');
+//Route::get('/blog-user/{slug}', [PostsController::class, 'userBlog'])->name('blog.user');
 
-Route::get('/blog-delete/{blog}', [PostsController::class, 'deleteBlog'])->name('blog.delete');
 
-Route::get('/blog-edit/{blog}', [PostsController::class, 'editBlog'])->name('blog.edit');
+Route::middleware('auth')->group(function () {
+    Route::get('/blog-delete/{blog}', [PostsController::class, 'deleteBlog'])
+        ->middleware(AdminMiddleware::class)
+        ->name('blog.delete');
 
-Route::post('/blog-save/{blog}', [PostsController::class, 'saveBlog'])->name('blog.save');
+    Route::get('/blog-edit/{blog}', [PostsController::class, 'editBlog'])
+        ->middleware(AdminMiddleware::class)
+        ->name('blog.edit');
+
+    Route::post('/blog-save/{blog}', [PostsController::class, 'saveBlog'])
+        ->name('blog.save');
+});
+
+
+
 
 Route::get('/blogs/{blog}', [PostsController::class, 'show'])->name('blogs.show');
 

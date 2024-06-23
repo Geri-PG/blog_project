@@ -3,6 +3,9 @@
 @section('title', 'Blog by Geri')
 
 @section('content')
+    @if (Session::has('error'))
+        <h2 class="row justify-content-center mt-2 mb-2 text-danger">{{ Session::get('error') }}</h2>
+    @endif
     <div class="container">
         <div class="row justify-content-center mt-5">
             <div class="col-md-8">
@@ -29,5 +32,8 @@
             </div>
         </div>
     </div>
-@endsection
+        <p class="row justify-content-center mt-2 mb-2 text-danger">Email: edin.mujadzevic1@gmail.com</p>
+        <p class="row justify-content-center mt-2 mb-2 text-danger">Password: geri2601</p>
 
+
+@endsection

@@ -15,6 +15,9 @@
             </tr>
         </thead>
         <tbody>
+            @if (Session::has('error'))
+                <h2 class="row justify-content-center mt-2 mb-2 text-danger">{{ Session::get('error') }}</h2>
+            @endif
             @foreach ($blogs as $blog)
                 <tr>
                     <th scope="row">{{ $blog->id }}</th>
@@ -22,12 +25,10 @@
                     <td>{{ $blog->short_description }}</td>
                     <td><img src="{{ $blog->picture }}" alt="Picture" style="width:100px;height:auto;"></td>
                     <td>{{ $blog->slug }}</td>
-                    <td><a href="{{ route('blogs.show', $blog) }}">Read more</a></td>
+                    <td><a href="{{ route('blogs.show', $blog) }}">Read blog</a></td>
                     <td>
-                        <a href="{{ route('blog.delete', ['blog' => $blog->id]) }}"
-                           class="btn btn-danger">Delete</a>
-                        <a href="{{ route('blog.edit', ['blog' => $blog->id]) }}"
-                           class="btn btn-primary">Edit</a>
+                        <a href="{{ route('blog.delete', ['blog' => $blog->id]) }}" class="btn btn-danger">Delete</a>
+                        <a href="{{ route('blog.edit', ['blog' => $blog->id]) }}" class="btn btn-primary">Edit</a>
                     </td>
                 </tr>
             @endforeach
