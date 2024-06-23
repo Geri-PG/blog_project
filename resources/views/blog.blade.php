@@ -3,6 +3,9 @@
 @section('title', 'Create Blog')
 
 @section('content')
+    @if (Session::has('error'))
+        <h2 class="row justify-content-center mt-2 mb-2 text-danger">{{ Session::get('error') }}</h2>
+    @endif
     <div class="row justify-content-center mt-2 mb-2">
         <div class="col-md-4">
             <div class="card mt-4">

@@ -17,6 +17,11 @@ class PostsController extends Controller
             'content' => 'required',
         ]);
 
+        $user = Auth::user();
+        if($user === null) {
+            return redirect()->back()->with(['error' => 'Please login, if you want to continue!']);
+       }
+
         Posts::create([
             'user_id' => Auth::user()->id,
             'title' => $request->get('title'),

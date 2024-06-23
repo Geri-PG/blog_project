@@ -20,11 +20,11 @@ class BlogSeeder extends Seeder
         for ($i = 0; $i < 50; $i++) {
             Posts::create([
                 'title' => $faker->sentence,
-                'short_description' => $faker->paragraph,
+                'short_description' => $faker->sentence,
                 'user_id' => 1,
                 'content' => $faker->paragraphs(6, true),
                 'published_at' => $faker->dateTimeBetween('-1 years', 'now'),
-                'slug' => 'Neki link',
+                'slug' => 'Read More',
             ]);
         }
     }

@@ -22,7 +22,7 @@
                     <td>{{ $blog->short_description }}</td>
                     <td><img src="{{ $blog->picture }}" alt="Picture" style="width:100px;height:auto;"></td>
                     <td>{{ $blog->slug }}</td>
-                    <td><a href="{{ route('blogs.show', $blog) }}">{{ $blog->slug}}</a></td>
+                    <td><a href="{{ route('blogs.show', $blog) }}">Read more</a></td>
                     <td>
                         <a href="{{ route('blog.delete', ['blog' => $blog->id]) }}"
                            class="btn btn-danger">Delete</a>
