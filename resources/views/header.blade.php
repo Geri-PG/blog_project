@@ -1,6 +1,5 @@
 <?php
-session_start();
-$loggedIn = isset($_SESSION['user']);
+use Illuminate\Support\Facades\Auth;
 ?>
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -12,19 +11,28 @@ $loggedIn = isset($_SESSION['user']);
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                @if (Auth::check())
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="/blog">Blog</a>
+                    <a class="nav-link active" aria-current="page" href="/blog">Create Blog</a>
                 </li>
+                @endif
                 <li class="nav-item">
                     <a class="nav-link" href="/blog-all">Blogs</a>
                 </li>
             </ul>
-            <?php if (!$loggedIn): ?>
-            <div class="d-inline-block">
-                <a class="btn btn-outline-light me-3" href="/login">Login</a>
-                <a class="btn btn-light" href="/register">Register</a>
-            </div>
-            <?php endif; ?>
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                @if (Auth::check())
+                <li class="nav-item">
+                    <a class="nav-link" href="/profile">{{ Auth::user()->name }}</a>
+                @else
+                <li class="nav-item">
+                    <a class="nav-link" href="/login">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/register">Register</a>
+                </li>
+                @endif
+            </ul>
         </div>
     </div>
 </nav>

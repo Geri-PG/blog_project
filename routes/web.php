@@ -10,7 +10,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::view('/blog', 'blog');
+
 
 Route::post('/blog-create', [PostsController::class, 'create'])->name('blog.create');
 
@@ -20,6 +20,9 @@ Route::get('/blog-all', [PostsController::class, 'allBlogs'])->name('blog.all');
 
 
 Route::middleware('auth')->group(function () {
+
+    Route::view('/blog', 'blog');
+    
     Route::get('/blog-delete/{blog}', [PostsController::class, 'deleteBlog'])
         ->middleware(AdminMiddleware::class)
         ->name('blog.delete');
