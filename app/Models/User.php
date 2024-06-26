@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -25,13 +24,6 @@ class User extends Authenticatable
         'role',
     ];
 
-    // app/Models/User.php
-public function blogs()
-{
-    return $this->hasMany(Posts::class);
-}
-
-
     /**
      * The attributes that should be hidden for serialization.
      *
@@ -43,15 +35,20 @@ public function blogs()
     ];
 
     /**
-     * Get the attributes that should be cast.
+     * The attributes that should be cast.
      *
-     * @return array<string, string>
+     * @var array<string, string>
      */
-    protected function casts(): array
+    protected $casts = [
+        'email_verified_at' => 'datetime',
+        'password' => 'hashed',
+    ];
+
+    /**
+     * Get the posts for the user.
+     */
+    public function posts()
     {
-        return [
-            'email_verified_at' => 'datetime',
-            'password' => 'hashed',
-        ];
+        return $this->hasMany(Posts::class);
     }
 }

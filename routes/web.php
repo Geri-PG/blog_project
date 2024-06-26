@@ -3,7 +3,6 @@
 use App\Http\Controllers\PostsController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Middleware\AdminMiddleware;
-use App\Http\Middleware\UserMiddleware;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -11,18 +10,15 @@ Route::get('/', function () {
 });
 
 
-
 Route::post('/blog-create', [PostsController::class, 'create'])->name('blog.create');
 
 Route::get('/blog-all', [PostsController::class, 'allBlogs'])->name('blog.all');
 
-//Route::get('/blog-user/{slug}', [PostsController::class, 'userBlog'])->name('blog.user');
-
 
 Route::middleware('auth')->group(function () {
 
-    Route::view('/blog', 'blog');
-    
+    Route::view('/blog', 'blog')->name('blog');
+
     Route::get('/blog-delete/{blog}', [PostsController::class, 'deleteBlog'])
         ->middleware(AdminMiddleware::class)
         ->name('blog.delete');
@@ -32,6 +28,7 @@ Route::middleware('auth')->group(function () {
         ->name('blog.edit');
 
     Route::post('/blog-save/{blog}', [PostsController::class, 'saveBlog'])
+        ->middleware(AdminMiddleware::class)
         ->name('blog.save');
 });
 

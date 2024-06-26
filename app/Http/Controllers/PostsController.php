@@ -18,43 +18,33 @@ class PostsController extends Controller
         ]);
 
         $user = Auth::user();
-        if($user === null) {
-            return redirect()->back()->with(['error' => 'Please login, if you want to continue!']);
-       }
 
         Posts::create([
-            'user_id' => Auth::user()->id,
-            'title' => $request->get('title'),
-            'short_description' => $request->get('short_description'),
-            'content' => $request->get('content'),
-            'picture' => $request->get('picture'),
+            'user_id' => $user->id,
+            'title' => $request->title,
+            'short_description' => $request->short_description,
+            'content' => $request->content,
+            'picture' => $request->picture,
             'published_at' => Carbon::now(),
             'slug' => Auth::user()->name,
         ]);
 
-        return redirect()->back();
+        return redirect()->route('blog.all');
     }
 
     public function allBlogs()
     {
         $blogs = Posts::paginate(4);
 
-
         return view('allBlogs', compact('blogs'));
     }
 
-    // public function userBlog($slug)
-    // {
-    //     $slug = Posts::where('slug', $slug)->first();
-    //    // dd($blog);
-    //     return view('userBlog', compact('slug'));
-    // }
-
     public function deleteBlog(Posts $blog)
     {
+
         $blog->delete();
 
-        return redirect()->back();
+        return redirect()->route('blog.all');
     }
 
     public function editBlog(Posts $blog)
@@ -62,21 +52,24 @@ class PostsController extends Controller
         return view('edit', compact('blog'));
     }
 
-    public function saveBlog (Request $request, Posts $blog)
+    public function saveBlog(Request $request, Posts $blog)
     {
-        $blog->title = $request->get('title');
-        $blog->short_description = $request->get('short_description');
+        $request->validate([
+            'title' => 'required',
+            'short_description' => 'required',
+        ]);
 
 
-        $blog->save();
+        $blog->update([
+            'title' => $request->title,
+            'short_description' => $request->short_description,
+        ]);
 
-        return redirect()->back();
+        return redirect()->route('blog.all');
     }
 
-    // app/Http/Controllers/BlogController.php
-public function show(Posts $blog)
-{
-    return view('show', compact('blog'));
-}
-
+    public function show(Posts $blog)
+    {
+        return view('show', compact('blog'));
+    }
 }
