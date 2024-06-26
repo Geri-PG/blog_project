@@ -12,7 +12,9 @@
                 <th scope="col">Picture</th>
                 <th scope="col">Username</th>
                 <th scope="col">Link</th>
-                <th scope="col">Actions</th>
+                @if (Auth::check())
+                    <th scope="col">Actions</th>
+                @endif
             </tr>
         </thead>
         <tbody>
@@ -27,10 +29,12 @@
                     <td><img src="{{ $blog->picture }}" alt="Picture" style="width:100px;height:auto;"></td>
                     <td>{{ $blog->slug }}</td>
                     <td><a href="{{ route('blogs.show', $blog) }}">Read blog</a></td>
-                    <td>
-                        <a href="{{ route('blog.delete', ['blog' => $blog->id]) }}" class="btn btn-danger">Delete</a>
-                        <a href="{{ route('blog.edit', ['blog' => $blog->id]) }}" class="btn btn-primary">Edit</a>
-                    </td>
+                    @if (Auth::check())
+                        <td>
+                            <a href="{{ route('blog.delete', ['blog' => $blog->id]) }}" class="btn btn-danger">Delete</a>
+                            <a href="{{ route('blog.edit', ['blog' => $blog->id]) }}" class="btn btn-primary">Edit</a>
+                        </td>
+                    @endif
                 </tr>
             @endforeach
         </tbody>
