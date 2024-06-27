@@ -48,4 +48,11 @@ class RegisteredUserController extends Controller
 
         return redirect(route('dashboard', absolute: false));
     }
+
+    public function users()
+    {
+       $allUsers = User::all();
+
+       return view('dashboard', compact('allUsers'));
+    }
 }
