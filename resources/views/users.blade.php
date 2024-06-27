@@ -2,6 +2,7 @@
 @section('title', 'Users')
 @section('content')
 
+
     @if (Auth::user()->role == 'admin')
         <h1 class="font-semibold text-xl text-gray-800 leading-tight row justify-content-center mt-4">USERS</h1>
         <div class="py-12">
@@ -33,6 +34,7 @@
                                     </table>
                                 @endif
     @endif
+
     </div>
     </div>
     </div>
