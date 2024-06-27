@@ -51,9 +51,9 @@ class RegisteredUserController extends Controller
 
     public function users()
     {
-       $allUsers = User::all();
+        $allUsers = User::all();
 
-       return view('users', compact('allUsers'));
+        return view('users', compact('allUsers'));
     }
 
     public function userDelete(User $user)
