@@ -36,6 +36,8 @@ Route::middleware('auth')->group(function () {
 
 Route::get('/users', [RegisteredUserController::class, 'users'])->name('users');
 
+Route::get('/users/{user}', [RegisteredUserController::class, 'userDelete'])->name('users.delete');
+
 Route::get('/blogs/{blog}', [PostsController::class, 'show'])->name('blogs.show');
 
 

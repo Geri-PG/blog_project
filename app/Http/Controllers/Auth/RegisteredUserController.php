@@ -55,4 +55,11 @@ class RegisteredUserController extends Controller
 
        return view('users', compact('allUsers'));
     }
+
+    public function userDelete(User $user)
+    {
+        $user->delete();
+
+        return redirect('users')->with('Success', 'You deleted this user');
+    }
 }
