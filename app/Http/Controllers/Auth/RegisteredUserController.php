@@ -53,6 +53,6 @@ class RegisteredUserController extends Controller
     {
        $allUsers = User::all();
 
-       return view('dashboard', compact('allUsers'));
+       return view('users', compact('allUsers'));
     }
 }
