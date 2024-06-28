@@ -7,7 +7,7 @@
             {{ session('success') }}
         </div>
     @endif
-    @if (Auth::user()->role == 'admin')
+    @if (Auth::check() && Auth::user()->role === 'superAdmin')
         <h1 class="font-semibold text-xl text-gray-800 leading-tight row justify-content-center mt-4">USERS</h1>
         <div class="py-12">
             <div class="container">

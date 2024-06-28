@@ -4,6 +4,7 @@ use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\PostsController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Middleware\AdminMiddleware;
+use App\Http\Middleware\SuperAdminMiddleware;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -15,30 +16,31 @@ Route::post('/blog-create', [PostsController::class, 'create'])->name('blog.crea
 
 Route::get('/blog-all', [PostsController::class, 'allBlogs'])->name('blog.all');
 
+Route::view('/blog', 'blog')->name('blog');
 
-Route::middleware('auth')->group(function () {
+Route::get('/blogs/{blog}', [PostsController::class, 'show'])->name('blogs.show');
 
-    Route::view('/blog', 'blog')->name('blog');
+
+Route::middleware(['auth', SuperAdminMiddleware::class])->group(function () {
 
     Route::get('/blog-delete/{blog}', [PostsController::class, 'deleteBlog'])
-        ->middleware(AdminMiddleware::class)
         ->name('blog.delete');
 
     Route::get('/blog-edit/{blog}', [PostsController::class, 'editBlog'])
-        ->middleware(AdminMiddleware::class)
         ->name('blog.edit');
 
     Route::post('/blog-save/{blog}', [PostsController::class, 'saveBlog'])
-        ->middleware(AdminMiddleware::class)
         ->name('blog.save');
+
+    Route::get('/users', [RegisteredUserController::class, 'users'])
+        ->name('users');
+
+    Route::get('/users/{user}', [RegisteredUserController::class, 'userDelete'])
+        ->name('users.delete');
 });
 
 
-Route::get('/users', [RegisteredUserController::class, 'users'])->name('users');
 
-Route::get('/users/{user}', [RegisteredUserController::class, 'userDelete'])->name('users.delete');
-
-Route::get('/blogs/{blog}', [PostsController::class, 'show'])->name('blogs.show');
 
 
 Route::get('/dashboard', function () {

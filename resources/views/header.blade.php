@@ -11,16 +11,20 @@ use Illuminate\Support\Facades\Auth;
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                @if (Auth::check() && Auth::user()->role === 'admin')
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/dashboard">Dashboard</a>
-                    </li>
+                @if (Auth::check())
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="/blog">Create Blog</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/users">Users</a>
-                    </li>
+                    @if (Auth::user()->role === 'superAdmin' || Auth::user()->role === 'admin')
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="/dashboard">Dashboard</a>
+                        </li>
+                        @if (Auth::user()->role === 'superAdmin')
+                            <li class="nav-item">
+                                <a class="nav-link" href="/users">Users</a>
+                            </li>
+                        @endif
+                    @endif
                 @endif
                 <li class="nav-item">
                     <a class="nav-link" href="/blog-all">Posts</a>
@@ -30,7 +34,8 @@ use Illuminate\Support\Facades\Auth;
                 @if (Auth::check())
                     <li class="nav-item">
                         <a class="nav-link" href="/profile">Profile: {{ Auth::user()->name }}</a>
-                    @else
+                    </li>
+                @else
                     <li class="nav-item">
                         <a class="nav-link" href="/login">Login</a>
                     </li>
