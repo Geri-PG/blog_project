@@ -39,6 +39,10 @@
         <p class="row justify-content-center mt-2 mb-2 text-danger">User</p>
         <p class="row justify-content-center mt-2 mb-2 text-danger">Email: anika@gmail.com</p>
         <p class="row justify-content-center mt-2 mb-2 text-danger">Password: anika1203</p>
+        <hr>
+        <p class="row justify-content-center mt-2 mb-2 text-danger">SuperAdmin</p>
+        <p class="row justify-content-center mt-2 mb-2 text-danger">Email: melka@gmail.com</p>
+        <p class="row justify-content-center mt-2 mb-2 text-danger">Password: melka123</p>
 
 
 @endsection
