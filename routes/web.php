@@ -1,12 +1,13 @@
 <?php
 
-use App\Http\Controllers\Auth\RegisteredUserController;
+
+use Illuminate\Support\Facades\Route;
+use App\Http\Middleware\UserMiddleware;
+use App\Http\Middleware\AdminMiddleware;
 use App\Http\Controllers\PostsController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Middleware\AdminMiddleware;
-use App\Http\Middleware\SuperAdminMiddleware;
-use App\Http\Middleware\UserMiddleware;
-use Illuminate\Support\Facades\Route;
+
+use App\Http\Controllers\Auth\RegisteredUserController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -22,25 +23,16 @@ Route::view('/blog', 'blog')->name('blog');
 Route::get('/blogs/{blog}', [PostsController::class, 'show'])->name('blogs.show');
 
 
+Route::get('/users', [RegisteredUserController::class, 'users'])->name('users');
+Route::get('/users/{user}', [RegisteredUserController::class, 'userDelete'])->name('users.delete');
 
-
-
-Route::middleware(['auth', SuperAdminMiddleware::class])->group(function () {
-    Route::get('/blog-delete/{blog}', [PostsController::class, 'deleteBlog'])
-        ->name('blog.delete');
-
-    Route::get('/blog-edit/{blog}', [PostsController::class, 'editBlog'])
-        ->name('blog.edit');
-
-    Route::post('/blog-save/{blog}', [PostsController::class, 'saveBlog'])
-        ->name('blog.save');
-
-    Route::get('/users', [RegisteredUserController::class, 'users'])
-        ->name('users');
-
-    Route::get('/users/{user}', [RegisteredUserController::class, 'userDelete'])
-        ->name('users.delete');
+Route::middleware(['auth', UserMiddleware::class])->group(function () {
+    Route::get('/blog-edit/{blog}', [PostsController::class, 'editBlog'])->name('blog.edit');
+    Route::get('/blog-delete/{blog}', [PostsController::class, 'deleteBlog'])->name('blog.delete');
+    Route::post('/blog-save/{blog}', [PostsController::class, 'saveBlog'])->name('blog.save');
 });
+
+
 
 
 

@@ -3,31 +3,24 @@
 namespace App\Http\Middleware;
 
 
-use App\Models\Posts;
 use Closure;
+use App\Models\Posts;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
 
 class UserMiddleware
 {
-    /**
-     * Handle an incoming request.
-     *
-     * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
-     */
     public function handle(Request $request, Closure $next): Response
     {
-        $postId = $request->route('blog');
-        $post = Posts::find($postId);
-        //dd($post);
-
-        if (!$post) {
-            return redirect()->back()->with('error', 'Post not found');
-        }
+        $blog = $request->route('blog');
 
 
-        if (Auth::check() && $post->user_id === Auth::id()) {
+        // if (!$blog instanceof Posts) {
+        //     $blog = Posts::find($blog);
+        // }
+
+        if (Auth::check() && $blog && ($blog->user_id === Auth::id() || Auth::user()->role === 'superAdmin')) {
             return $next($request);
         }
 
