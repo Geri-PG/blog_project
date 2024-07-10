@@ -25,5 +25,6 @@ class UserMiddleware
         }
 
         return redirect()->back()->with('error', 'You can do something only with your blog');
+        
     }
 }

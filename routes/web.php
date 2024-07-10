@@ -3,7 +3,6 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\UserMiddleware;
-use App\Http\Middleware\AdminMiddleware;
 use App\Http\Controllers\PostsController;
 use App\Http\Controllers\ProfileController;
 
