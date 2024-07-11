@@ -32,7 +32,7 @@
             </div>
         </div>
     </div>
-        <p class="row justify-content-center mt-2 mb-2 text-danger">Admin</p>
+        {{-- <p class="row justify-content-center mt-2 mb-2 text-danger">Admin</p>
         <p class="row justify-content-center mt-2 mb-2 text-danger">Email: edin.mujadzevic1@gmail.com</p>
         <p class="row justify-content-center mt-2 mb-2 text-danger">Password: geri2601</p>
         <hr>
@@ -42,7 +42,7 @@
         <hr>
         <p class="row justify-content-center mt-2 mb-2 text-danger">SuperAdmin</p>
         <p class="row justify-content-center mt-2 mb-2 text-danger">Email: melka@gmail.com</p>
-        <p class="row justify-content-center mt-2 mb-2 text-danger">Password: melka123</p>
+        <p class="row justify-content-center mt-2 mb-2 text-danger">Password: melka123</p> --}}
 
 
 @endsection

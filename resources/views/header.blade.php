@@ -27,7 +27,7 @@ use Illuminate\Support\Facades\Auth;
                     @endif
                 @endif
                 <li class="nav-item">
-                    <a class="nav-link" href="/blog-all">Posts</a>
+                    <a class="nav-link" href="/blog/all">Posts</a>
                 </li>
             </ul>
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
