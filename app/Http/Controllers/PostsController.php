@@ -2,21 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Posts;
 use Carbon\Carbon;
+use App\Models\Posts;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\CreatePostRequest;
 
 class PostsController extends Controller
 {
-    public function create(Request $request)
+    public function create(CreatePostRequest $request)
     {
-        $request->validate([
-            'title' => 'required',
-            'short_description' => 'required',
-            'content' => 'required',
-        ]);
-
         $user = Auth::user();
 
         Posts::create([
@@ -26,7 +21,7 @@ class PostsController extends Controller
             'content' => $request->content,
             'picture' => $request->picture,
             'published_at' => Carbon::now(),
-            'slug' => Auth::user()->name,
+            'slug' => $user->name,
         ]);
 
         return redirect()->route('blog.all');
@@ -41,7 +36,6 @@ class PostsController extends Controller
 
     public function deleteBlog(Posts $blog)
     {
-
         $blog->delete();
 
         return redirect()->route('blog.all');

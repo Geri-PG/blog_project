@@ -16,15 +16,15 @@ Route::controller(RegisteredUserController::class)->name('users.')->group(functi
 });
 
 
-Route::controller(PostsController::class)->name('blog.')->group(function () {
-    Route::post('/blog/create', 'create')->name('create');
-    Route::get('/blog/all', 'allBlogs')->name('all');
+Route::controller(PostsController::class)->prefix('/blog')->name('blog.')->group(function () {
+    Route::post('/create', 'create')->name('create');
+    Route::get('/all', 'allBlogs')->name('all');
     Route::get('/blogs/{blog}', 'show')->name('show');
 
     Route::middleware(['auth', UserMiddleware::class])->group(function () {
-        Route::get('/blog/edit/{blog}', 'editBlog')->name('edit');
-        Route::get('/blog/delete/{blog}', 'deleteBlog')->name('delete');
-        Route::post('/blog/save/{blog}', 'saveBlog')->name('save');
+        Route::get('/edit/{blog}', 'editBlog')->name('edit');
+        Route::get('/delete/{blog}', 'deleteBlog')->name('delete');
+        Route::post('/save/{blog}', 'saveBlog')->name('save');
     });
 });
 
